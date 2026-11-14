@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotWheelsAcceleracers | División Automotriz Experimental</title>
+    
+    <!-- Tipografías Ejecutivas & Sci-Fi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Librerías Externas (GSAP, ScrollTrigger & Iconos) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body data-faction="teku" data-realm="storm">
+
+    <!-- PRELOADER CINEMÁTICO CENTRADO -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrap">
+                <span class="preloader-logo"><span class="logo-accent">HW</span> // ACCELERACERS</span>
+                <span class="preloader-status">SISTEMA DE HANGAR V4.0 ULTIMATE</span>
+            </div>
+            <div class="loader-bar-container">
+                <div class="loader-bar" id="loader-bar"></div>
+            </div>
+            <p class="preloader-text" id="preloader-text">INICIALIZANDO NÚCLEO NITROX [0%]</p>
+        </div>
+    </div>
+
+    <!-- TERMINAL DE TELEMETRÍA EN VIVO (HUD INFERIOR) -->
+    <div class="live-terminal" id="live-terminal">
+        <span class="terminal-dot"></span>
+        <span class="terminal-text" id="terminal-log">[TELEMETRÍA] Sincronizando satélite orbital Hangar Principal...</span>
+    </div>
+
+    <!-- CURSOR HUD PERSONALIZADO -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- NAVBAR GLASSMORPHISM -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">HW</span> // ACCELERACERS
+            </a>
+
+            <nav class="nav-links">
+                <a href="#flota">Flota</a>
+                <a href="#reinos">Reinos</a>
+                <a href="#pilotos">Pilotos</a>
+                <a href="#ingenieria">Ingeniería</a>
+                <a href="#contacto">Adquisición</a>
+            </nav>
+
+            <!-- Selector Dinámico de las 4 Escuderías -->
+            <div class="faction-switcher" title="Cambiar División / Telemetría">
+                <button class="faction-btn active" data-theme="teku">TEKU</button>
+                <button class="faction-btn" data-theme="maniacs">MANIACS</button>
+                <button class="faction-btn" data-theme="silencerz">SILENCERZ</button>
+                <button class="faction-btn" data-theme="drones">DRONES</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-bg" style="background-image: url('assets/img/Teku/deora2.jpg');"></div>
+        
+        <div class="hero-content">
+            <p class="hero-subtitle gs-reveal" data-scramble>DIVISIÓN DE PROTOTIPOS DE ALTO RENDIMIENTO</p>
+            <h1 class="hero-title gs-reveal" data-scramble>INGENIERÍA MÁS ALLÁ DEL LÍMITE</h1>
+            <p class="hero-description gs-reveal">
+                Vehículos conceptuales impulsados por propulsión Nitrox 2, aerodinámica activa y telemetría aeroespacial. Diseñados para dominar cualquier reino.
+            </p>
+            <div class="hero-actions gs-reveal">
+                <a href="#flota" class="btn-primary">Explorar Flota</a>
+                <a href="#contacto" class="btn-outline">Solicitar Acceso Privado</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE FLOTA / CARRUSEL AUTOMÁTICO FLUIDO -->
+    <section id="flota" class="section carousel-section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">HANGAR // 01 — PASARELA CINEMÁTICA</span>
+                    <h2 class="section-title">FLOTA EXPERIMENTAL</h2>
+                </div>
+                <div class="filter-tabs" id="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">Todos (16)</button>
+                    <button class="filter-btn" data-filter="teku">Teku</button>
+                    <button class="filter-btn" data-filter="maniacs">Metal Maniacs</button>
+                    <button class="filter-btn" data-filter="silencerz">Silencerz</button>
+                    <button class="filter-btn" data-filter="drones">Racing Drones</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-wrapper" id="carousel-wrapper">
+            <button class="carousel-nav prev" id="prev-slide" aria-label="Anterior"><i data-lucide="chevron-left"></i></button>
+            <div class="carousel-viewport">
+                <div class="carousel-track" id="fleet-grid"></div>
+            </div>
+            <button class="carousel-nav next" id="next-slide" aria-label="Siguiente"><i data-lucide="chevron-right"></i></button>
+        </div>
+
+        <div class="container carousel-footer">
+            <span class="carousel-status" id="carousel-counter">UNIDAD 01 / 16</span>
+            <div class="carousel-progress-bar">
+                <div class="carousel-progress-fill" id="carousel-progress"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN INTERACTIVA: SIMULADOR DE REINOS -->
+    <section id="reinos" class="section section-dark realms-section">
+        <div class="container">
+            <span class="section-tag">SIMULADOR // 02</span>
+            <h2 class="section-title" style="margin-bottom: 1rem;">PRUEBA DE REINOS EXTREMOS</h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin-bottom: 2.5rem;">
+                Selecciona un entorno de prueba para calibrar la respuesta del chasis, la tracción magnética y la disipación térmica del motor.
+            </p>
+
+            <div class="realms-grid">
+                <div class="realm-card active" data-realm="storm">
+                    <h3>Reino Tormenta</h3>
+                    <p>Alta humedad, vientos cruzados y superficie resbaladiza de alta descarga eléctrica.</p>
+                </div>
+                <div class="realm-card" data-realm="water">
+                    <h3>Reino Agua</h3>
+                    <p>Inmersión total, presión hidrostática y tracción hidro-cinética avanzada.</p>
+                </div>
+                <div class="realm-card" data-realm="neon">
+                    <h3>Reino Neón</h3>
+                    <p>Circuitos cerrados de alta velocidad con iluminación estroboscópica y gravedad variable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PILOTOS / EXPEDIENTES CLASIFICADOS -->
+    <section id="pilotos" class="section">
+        <div class="container">
+            <span class="section-tag">EXPEDIENTES // ÉLITE</span>
+            <h2 class="section-title" style="margin-bottom: 3rem;">COMANDANTES DE ESCUDERÍA</h2>
+
+            <div class="pilots-grid">
+                <div class="pilot-card">
+                    <div class="pilot-badge">TEKU LEADER</div>
+                    <h3>VERT WHEELER</h3>
+                    <p class="pilot-spec">Especialidad: Agilidad Extrema & Derrapes Sónicos</p>
+                    <span class="pilot-car">Prototipo Asignado: Deora II</span>
+                </div>
+                <div class="pilot-card">
+                    <div class="pilot-badge">METAL MANIACS</div>
+                    <h3>TORK MADDOX</h3>
+                    <p class="pilot-spec">Especialidad: Fuerza Bruta & Impacto Cinético</p>
+                    <span class="pilot-car">Prototipo Asignado: Spine Buster</span>
+                </div>
+                <div class="pilot-card">
+                    <div class="pilot-badge">SILENCERZ LABS</div>
+                    <h3>EL SILENCIOSO</h3>
+                    <p class="pilot-spec">Especialidad: Sigilo Electromagnético & Infiltración</p>
+                    <span class="pilot-car">Prototipo Asignado: Technetium</span>
+                </div>
+                <div class="pilot-card">
+                    <div class="pilot-badge">RACING DRONES</div>
+                    <h3>RD-S1 APEX</h3>
+                    <p class="pilot-spec">Especialidad: Inteligencia Artificial & Cero Errores</p>
+                    <span class="pilot-car">Prototipo Asignado: RD-09</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN INGENIERÍA -->
+    <section id="ingenieria" class="section section-dark">
+        <div class="container engineering-grid">
+            <div class="eng-image">
+                <img src="assets/img/Drones/rd09.jpg" alt="Tecnología Nitrox 2 RD-09">
+                <div class="telemetry-badge">
+                    <i data-lucide="zap"></i>
+                    <span>SISTEMA NITROX 2 ACTIVO</span>
+                </div>
+            </div>
+            <div class="eng-content">
+                <span class="section-tag">ARQUITECTURA // AC-02</span>
+                <h2 class="section-title">TECNOLOGÍA DE ACCELECHARGERS</h2>
+                <p class="eng-text">
+                    Cada unidad ensamblada en nuestras instalaciones integra chasis de aleación ultraligera, gestión térmica de grado orbital y módulos intercambiables de rendimiento extremo.
+                </p>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="480">0</span><span class="stat-unit">KM/H</span>
+                        <span class="stat-label">Velocidad Terminal</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1450">0</span><span class="stat-unit">HP</span>
+                        <span class="stat-label">Potencia Combinada</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1.8">0</span><span class="stat-unit">SEG</span>
+                        <span class="stat-label">0 - 100 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO EJECUTIVO -->
+    <section id="contacto" class="section">
+        <div class="container contact-wrapper">
+            <div class="contact-info">
+                <span class="section-tag">CONCIERGE // PRIVADO</span>
+                <h2 class="section-title">AGENDAR PRUEBA EN PISTA</h2>
+                <p>Nuestros asesores de ingeniería configurarán una sesión privada de telemetría y manejo para el prototipo de tu elección.</p>
+                <ul class="contact-details">
+                    <li><i data-lucide="map-pin"></i> Hangar Principal, Toluca Aero-Tech Park, MX</li>
+                    <li><i data-lucide="shield-check"></i> Certificación de Piloto Requerida</li>
+                </ul>
+            </div>
+
+            <form class="executive-form" id="contact-form">
+                <div class="input-group">
+                    <input type="text" required placeholder="Nombre Completo / Piloto">
+                </div>
+                <div class="input-group">
+                    <input type="email" required placeholder="Correo Corporativo">
+                </div>
+                <div class="input-group">
+                    <select required id="prototype-select">
+                        <option value="" disabled selected>Seleccionar Prototipo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-width">Solicitar Autorización</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="logo"><span class="logo-accent">HW</span> // ACCELERACERS</div>
+            <p class="copyright">© 2026 HotWheelsAcceleracers Concept Division. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL DE TELEMETRÍA INTERACTIVA -->
+    <div class="modal" id="car-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+</body>
+</html>
