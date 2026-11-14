@@ -10,11 +10,6 @@
 
 ---
 
-## 🚀 Vista Previa & Demo en Vivo
-* **Demo en Vivo:** [🔗 Ver Aplicación Desplegada](#) *(Sustituye este enlace con tu URL de GitHub Pages o Vercel)*
-* **Repositorio:** [📂 Ver Código Fuente en GitHub](https://github.com/CastilloGonzalezCarlosRodrigo)
-
----
 
 ## 🛠️ Características Principales
 
